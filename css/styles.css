@@ -20,7 +20,7 @@ body {
     border-radius: 1rem;
     padding: 2rem;
     width: 90%;
-    max-width: 600px;
+    max-width: 480px;
 }
 .my-balance-section {
     background-color: var(--primary1);
@@ -31,26 +31,64 @@ body {
 }
 .main-section {
     background-color: white;
-    margin: 0 auto;
+    margin: 0 auto 6rem;
+}
+.main-title {
+    font-size: 1.7rem;
+    margin-bottom: 2rem;
 }
 .graph-section {
     border-bottom: 5px groove var(--neutral3);
-    height: 400px;
-    padding: 3rem 0;
+    padding: 2.5rem 0;
+}
+.day-names {
+    color: var(--neutral2);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 12px 0 0;
+}
+.days {
+    font-size: 0.8rem;
+    width: 10%;
+    max-width: 45px;
+    text-align: center;
+}
+.bars-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 160px;
+}
+.bars {
+    background-color: var(--primary1);
+    border-radius: 5px;
+    cursor: pointer;
+    width: 10%;
+    max-width: 45px;
+    height: 50%;
+}
+.totals-section {
+    margin-top: 2.5rem;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
 }
-
-
-
-
 .attribution {
     color: var(--neutral1);
     background-color: var(--primary2);
     width: 100vw;
     padding: 1%;
     text-align: center;
-    position: fixed;
-    bottom: 0;
+    /* position: fixed;
+    bottom: 0; */
 }
+
+@media (min-width: 400px) {
+    .days {
+        font-size: 1rem;
+    }
+}
+
+
+
