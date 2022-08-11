@@ -1,5 +1,6 @@
 :root {
     --primary1: hsl(10, 79%, 65%);
+    --primary1-70: hsl(10, 79%, 65%, 70%);
     --primary2: hsl(186, 34%, 60%);
     --neutral1: hsl(25, 47%, 15%);
     --neutral2: hsl(28, 10%, 53%);
@@ -20,7 +21,7 @@ body {
     border-radius: 1rem;
     padding: 2rem;
     width: 90%;
-    max-width: 480px;
+    max-width: 550px;
 }
 .my-balance-section {
     background-color: var(--primary1);
@@ -44,19 +45,19 @@ body {
 .day-names {
     color: var(--neutral2);
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: flex-end;
     margin: 12px 0 0;
 }
 .days {
     font-size: 0.8rem;
     width: 10%;
-    max-width: 45px;
+    max-width: 50px;
     text-align: center;
 }
 .bars-section {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: flex-end;
     height: 160px;
 }
@@ -65,8 +66,32 @@ body {
     border-radius: 5px;
     cursor: pointer;
     width: 10%;
-    max-width: 45px;
+    max-width: 50px;
     height: 50%;
+    position: relative;
+}
+.bars:hover {
+    background-color: var(--primary1-70);
+}
+.show-amount-div {
+    color: white;
+    background-color: var(--neutral1);
+    border-radius: 5px;
+    height: 30px;
+    width: 55px;
+    font-size: 0.8rem;
+    position: absolute;
+    top: -35px;
+    left: -3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.amounts {
+    visibility: hidden;
+}
+.show-amount {
+    visibility: visible;
 }
 .totals-section {
     margin-top: 2.5rem;

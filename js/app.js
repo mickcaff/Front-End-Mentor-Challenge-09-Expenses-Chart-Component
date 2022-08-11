@@ -30,7 +30,41 @@ const populateBarChart = async () => {
         bars[i].style.height = `${percents[i]}%`
         if (percents[i] === 100){
             bars[i].style.backgroundColor = 'hsl(186, 34%, 60%)'
+            bars[i].addEventListener("mouseenter", () => {
+                bars[i].style.backgroundColor = 'hsl(186, 34%, 60%, 50%)'
+            })
+            bars[i].addEventListener("mouseleave", () => {
+                bars[i].style.backgroundColor = 'hsl(186, 34%, 60%)'
+            })
         }
     }
 }
 populateBarChart()
+
+const populateAmounts = async () => {
+    const data = await getJsonData()
+    const amounts = document.querySelectorAll('.amounts')
+
+    for (let i = 0; i < 7; i++){
+        amounts[i].textContent = `$${data[i].amount}`
+    }
+}
+populateAmounts()
+
+const displayAmounts = () => {
+    const amounts = document.querySelectorAll('.amounts')
+    const bars = document.querySelectorAll('.bars')
+
+    for (let i = 0; i < 7; i++){
+        bars[i].addEventListener("mouseenter", () => {
+            amounts[i].classList.toggle("show-amount-div")
+            amounts[i].classList.toggle("show-amount")
+        })
+        bars[i].addEventListener("mouseleave", () => {
+            amounts[i].classList.toggle("show-amount-div")
+            amounts[i].classList.toggle("show-amount")
+        })
+    }
+}
+displayAmounts()
+
