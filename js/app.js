@@ -31,13 +31,22 @@ const populateBarChart = async () => {
         if (percents[i] === 100){
             bars[i].style.backgroundColor = 'hsl(186, 34%, 60%)'
             bars[i].addEventListener("mouseenter", () => {
-                bars[i].style.backgroundColor = 'hsl(186, 34%, 60%, 50%)'
+                bars[i].style.backgroundColor = 'hsl(186, 34%, 60%, 70%)'
             })
             bars[i].addEventListener("mouseleave", () => {
                 bars[i].style.backgroundColor = 'hsl(186, 34%, 60%)'
             })
         }
     }
+
+    const total = amounts.reduce((a,b) => a += b)
+    const totalTitle = document.querySelector(".month-total")
+    console.log(total)
+    totalTitle.textContent = `$${total}`
+
+    const balance = 1000 - total
+    const balanceTotal = document.querySelector(".my-balance-total")
+    balanceTotal.textContent = `$${balance}`
 }
 populateBarChart()
 
