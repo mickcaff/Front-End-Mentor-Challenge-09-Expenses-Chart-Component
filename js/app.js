@@ -1,34 +1,44 @@
-
-const getJsonData = async () => {
+const getExpensesData = async () => {
     const res = await fetch('../data.json')
     const json = await res.json()
     return json
 }
 
-const populateDays = async () => {
-    const data = await getJsonData()
-    const days = document.querySelectorAll('.days')
+const getDaysElements = () => {
+    return document.querySelectorAll('.days')
+}
+
+const populateDays = (data) => {
+    const days = getDaysElements()
     for (let i = 0; i < 7; i++){
         days[i].textContent = data[i].day
     }
 }
-populateDays()
 
-const populateBarChart = async () => {
-    const data = await getJsonData()
-    const bars = document.querySelectorAll('.bars')
-    
-    const amounts = []
+const getBarsElements = () => {
+    return document.querySelectorAll('.bars')
+}
+
+const createArrayOfAmounts = (data) => {
+    const amountsArray = []
     for (let i = 0; i < 7; i++){
-        amounts.push(data[i].amount)
+        amountsArray.push(data[i].amount)
     }
-    
-    let max = Math.max(...amounts)
-    const percents = amounts.map(num => Math.round((num / max) * 100))
+    return amountsArray
+}
 
+const findMaxAmount = (array) => {
+    return Math.max(...array)
+}
+
+const createArrayOfPercentages = (array, maxAmount) => {
+    return array.map(num => Math.round((num / maxAmount) * 100))
+}
+
+const updateBarHeightAndStyle = (bars, percentsArray) => {
     for (let i = 0; i < 7; i++){
-        bars[i].style.height = `${percents[i]}%`
-        if (percents[i] === 100){
+        bars[i].style.height = `${percentsArray[i]}%`
+        if (percentsArray[i] === 100){
             bars[i].style.backgroundColor = 'hsl(186, 34%, 60%)'
             bars[i].addEventListener("mouseenter", () => {
                 bars[i].style.backgroundColor = 'hsl(186, 34%, 60%, 70%)'
@@ -38,42 +48,61 @@ const populateBarChart = async () => {
             })
         }
     }
+}
 
-    const total = amounts.reduce((a,b) => a += b)
+const numbersArrayTotal = (array) => {
+    return array.reduce((a,b) => a += b)
+}
+
+const updateMonthTotalElement = (total) => {
     const totalTitle = document.querySelector(".month-total")
-    console.log(total)
     totalTitle.textContent = `$${total}`
+}
 
+const updateRemainingBalanceElement = (total) => {
     const balance = 1000 - total
     const balanceTotal = document.querySelector(".my-balance-total")
     balanceTotal.textContent = `$${balance}`
 }
-populateBarChart()
 
-const populateAmounts = async () => {
-    const data = await getJsonData()
-    const amounts = document.querySelectorAll('.amounts')
+const getAmountsElements = () => {
+    return document.querySelectorAll('.amounts')
+}
 
+const updateAmountElements = (data) => {
+    const amountElements = getAmountsElements()
     for (let i = 0; i < 7; i++){
-        amounts[i].textContent = `$${data[i].amount}`
+        amountElements[i].textContent = `$${data[i].amount}`
     }
 }
-populateAmounts()
 
-const displayAmounts = () => {
-    const amounts = document.querySelectorAll('.amounts')
-    const bars = document.querySelectorAll('.bars')
-
+const hoverDisplayAmountElements = (barElements) => {
+    const amountElements = getAmountsElements()
     for (let i = 0; i < 7; i++){
-        bars[i].addEventListener("mouseenter", () => {
-            amounts[i].classList.toggle("show-amount-div")
-            amounts[i].classList.toggle("show-amount")
+        barElements[i].addEventListener("mouseenter", () => {
+            amountElements[i].classList.toggle("show-amount-div")
+            amountElements[i].classList.toggle("show-amount")
         })
-        bars[i].addEventListener("mouseleave", () => {
-            amounts[i].classList.toggle("show-amount-div")
-            amounts[i].classList.toggle("show-amount")
+        barElements[i].addEventListener("mouseleave", () => {
+            amountElements[i].classList.toggle("show-amount-div")
+            amountElements[i].classList.toggle("show-amount")
         })
     }
 }
-displayAmounts()
+
+const populateBarChartData = async () => {
+    const data = await getExpensesData()
+    populateDays(data)
+    const bars = getBarsElements()
+    const amountsArray = createArrayOfAmounts(data)
+    const maxAmount = findMaxAmount(amountsArray)
+    const percents = createArrayOfPercentages(amountsArray, maxAmount)
+    updateBarHeightAndStyle(bars, percents)
+    const amountsTotal = numbersArrayTotal(amountsArray)
+    updateMonthTotalElement(amountsTotal)
+    updateRemainingBalanceElement(amountsTotal)
+    updateAmountElements(data)
+    hoverDisplayAmountElements(bars)
+}
+populateBarChartData()
 
