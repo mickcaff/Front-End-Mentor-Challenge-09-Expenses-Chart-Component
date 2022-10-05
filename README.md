@@ -2,14 +2,18 @@
 
 This is a solution to the [Expenses chart component challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/expenses-chart-component-e7yJBUdjwt). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
+#### Link
+
+- My Solution Live Site URL: [https://bespoke-liger-5ec054.netlify.app/](https://bespoke-liger-5ec054.netlify.app/)
+
 ## Table of contents
 
 - [Frontend Mentor - Expenses chart component solution](#frontend-mentor---expenses-chart-component-solution)
+      - [Link](#link)
   - [Table of contents](#table-of-contents)
   - [Overview](#overview)
     - [The challenge](#the-challenge)
     - [Screenshot](#screenshot)
-    - [Links](#links)
   - [My process](#my-process)
     - [Built with](#built-with)
     - [What I learned](#what-i-learned)
@@ -40,10 +44,6 @@ Mobile View
 <img src="./images/final-mobile.png" alt="Mobile view screenshot" width="250px">
 
 
-### Links
-
-- Solution URL: [https://www.frontendmentor.io/challenges/expenses-chart-component-e7yJBUdjwt](https://www.frontendmentor.io/challenges/expenses-chart-component-e7yJBUdjwt)
-- Live Site URL: [https://bespoke-liger-5ec054.netlify.app/](https://bespoke-liger-5ec054.netlify.app/)
 
 ## My process
 
